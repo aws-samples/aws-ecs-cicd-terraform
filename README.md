@@ -6,6 +6,11 @@
 [![PyPI version](https://badge.fury.io/py/aws-cdk.core.svg)](https://badge.fury.io/py/aws-cdk.core)
 [![NuGet version](https://badge.fury.io/nu/Amazon.CDK.svg)](https://badge.fury.io/nu/Amazon.CDK)
 
+## Introduction
+
+This workshop is designed to enable engineers to get some hands-on experience using AWS CI/CD tools to build pipelines for ECS workloads.
+
+The workshop consists of a number of lab modules, each designed to demonstrate a CI/CD pattern. You will be using AWS services like AWS CodePipeline, AWS CodeCommit, AWS CodeBuild, AWS CloudFormation, and AWS CodeDeploy.
 
 ## Background
 
