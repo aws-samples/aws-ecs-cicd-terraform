@@ -1,5 +1,6 @@
 site_name: Build and Deploy Application to Amazon Fargate
 nav:
+  - 'Home' - index.md
   - Module 1 - Architecture: architecture.md
   - Module 2 - Prerequisites: prerequisites.md
   - Module 3 - Build the infrastructure: infrastructure.md
