@@ -1,0 +1,567 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.14">
+    
+    
+      
+        <title>Module 2 - Prerequisites - Build and Deploy Application to Amazon Fargate</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.d3202873.min.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ff0a5ce4.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#4051b5">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CConsolas&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Consolas",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#prerequisites" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Build and Deploy Application to Amazon Fargate" class="md-header-nav__button md-logo" aria-label="Build and Deploy Application to Amazon Fargate">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Build and Deploy Application to Amazon Fargate
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Module 2 - Prerequisites
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Build and Deploy Application to Amazon Fargate" class="md-nav__button md-logo" aria-label="Build and Deploy Application to Amazon Fargate">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Build and Deploy Application to Amazon Fargate
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../architecture/" title="Module 1 - Architecture" class="md-nav__link">
+      Module 1 - Architecture
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Module 2 - Prerequisites
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Module 2 - Prerequisites" class="md-nav__link md-nav__link--active">
+      Module 2 - Prerequisites
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aws-account" class="md-nav__link">
+    AWS account
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-an-aws-cloud9-environment" class="md-nav__link">
+    Create an AWS Cloud9 environment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-the-aws-cloud9-environment" class="md-nav__link">
+    Configure the AWS Cloud9 environment
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure the AWS Cloud9 environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-and-attach-an-iam-role-for-your-cloud9-instance" class="md-nav__link">
+    Create and attach an IAM role for your Cloud9 instance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upgrade-awscli" class="md-nav__link">
+    Upgrade awscli
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-terraform" class="md-nav__link">
+    Install Terraform
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-workshop-files" class="md-nav__link">
+    Install workshop files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../infrastructure/" title="Module 3 - Build the infrastructure" class="md-nav__link">
+      Module 3 - Build the infrastructure
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../deploy/" title="Module 4 - Deploy" class="md-nav__link">
+      Module 4 - Deploy
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../pipeline/" title="Module 5 - Trigger pipeline" class="md-nav__link">
+      Module 5 - Trigger pipeline
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../cleanup/" title="Module 6 - Cleanup" class="md-nav__link">
+      Module 6 - Cleanup
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aws-account" class="md-nav__link">
+    AWS account
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-an-aws-cloud9-environment" class="md-nav__link">
+    Create an AWS Cloud9 environment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-the-aws-cloud9-environment" class="md-nav__link">
+    Configure the AWS Cloud9 environment
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure the AWS Cloud9 environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-and-attach-an-iam-role-for-your-cloud9-instance" class="md-nav__link">
+    Create and attach an IAM role for your Cloud9 instance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upgrade-awscli" class="md-nav__link">
+    Upgrade awscli
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-terraform" class="md-nav__link">
+    Install Terraform
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-workshop-files" class="md-nav__link">
+    Install workshop files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h1>
+<p>Before you build the whole infrastructure, including your CI/CD pipeline, you will need to meet the following pre-requisites.
+AWS account</p>
+<h3 id="aws-account">AWS account<a class="headerlink" href="#aws-account" title="Permanent link">&para;</a></h3>
+<p>Ensure you have access to an AWS account, and a set of credentials with Administrator permissions. Note: In a production environment we would recommend locking permissions down to the bare minimum needed to operate the pipeline.</p>
+<h3 id="create-an-aws-cloud9-environment">Create an AWS Cloud9 environment<a class="headerlink" href="#create-an-aws-cloud9-environment" title="Permanent link">&para;</a></h3>
+<details class="info"><summary>What is AWS Cloud9?</summary><p>AWS Cloud9 is a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. It includes a code editor, debugger, and terminal. Cloud9 comes prepackaged with essential tools for popular programming languages, including JavaScript, Python, PHP, and more, so you don’t need to install files or configure your development machine to start new projects. Since your Cloud9 IDE is cloud-based, you can work on your projects from your office, home, or anywhere using an internet-connected machine. Cloud9 also provides a seamless experience for developing serverless applications enabling you to easily define resources, debug, and switch between local and remote execution of serverless applications. With Cloud9, you can quickly share your development environment with your team, enabling you to pair program and track each other's inputs in real time.</p>
+</details>
+<p>Log into the AWS Management Console and search for Cloud9 services in the search bar. Click Cloud9 and create an AWS Cloud9 environment in the us-east-1 region based on Amazon Linux 2.</p>
+<h3 id="configure-the-aws-cloud9-environment">Configure the AWS Cloud9 environment<a class="headerlink" href="#configure-the-aws-cloud9-environment" title="Permanent link">&para;</a></h3>
+<p>Launch the AWS Cloud9 IDE. Close the Welcome tab and open a new Terminal tab.</p>
+<p><img alt="Cloud9" src="../images/Cloud9.png" /></p>
+<h4 id="create-and-attach-an-iam-role-for-your-cloud9-instance">Create and attach an IAM role for your Cloud9 instance<a class="headerlink" href="#create-and-attach-an-iam-role-for-your-cloud9-instance" title="Permanent link">&para;</a></h4>
+<p>By default, Cloud9 manages temporary IAM credentials for you.  Unfortunately these are incomaptible with Terraform. To get around this you need to disable Cloud9 temporary credentials, and create and attach an IAM role for your Cloud9 instance.</p>
+<ol>
+<li>Follow <a href="https://console.aws.amazon.com/iam/home#/roles$new?step=review&amp;commonUseCase=EC2%2BEC2&amp;selectedUseCase=EC2&amp;policies=arn:aws:iam::aws:policy%2FAdministratorAccess">this deep link to create an IAM role with Administrator access.</a></li>
+<li>Confirm that <strong>AWS service</strong> and <strong>EC2</strong> are selected, then click <strong>Next</strong> to view permissions.</li>
+<li>Confirm that <strong>AdministratorAccess</strong> is checked, then click <strong>Next: Tags</strong> to assign tags.</li>
+<li>Take the defaults, and click <strong>Next: Review</strong> to review.</li>
+<li>Enter <strong>workshop-admin</strong> for the Name, and click <strong>Create role</strong>.
+<img alt="createrole" src="../images/createrole.png" /></li>
+<li>Follow <a href="https://console.aws.amazon.com/ec2/v2/home?#Instances:tag:Name=aws-cloud9-;sort=desc:launchTime">this deep link to find your Cloud9 EC2 instance</a></li>
+<li>Select the instance, then choose <strong>Actions / Instance Settings / Modify IAM Role</strong>. Note: If you cannot find this menu option, then look under <strong>Actions / Security / Modify IAM Role</strong> instead.
+<img alt="c9instancerole" src="../images/c9instancerole.png" /></li>
+<li>Choose <strong>workshop-admin</strong> from the <strong>IAM Role</strong> drop down, and select <strong>Apply</strong>
+<img alt="c9attachrole" src="../images/c9attachrole.png" /></li>
+<li>Return to your workspace and click the gear icon (in top right corner), or click to open a new tab and choose "Open Preferences"</li>
+<li>Select <strong>AWS SETTINGS</strong></li>
+<li>Turn off <strong>AWS managed temporary credentials</strong></li>
+<li>Close the Preferences tab
+<img alt="c9disableiam" src="../images/c9disableiam.png" /></li>
+<li>In the Cloud9 terminal pane, execute the command:
+    <div class="highlight"><pre><span></span><code>rm -vf <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.aws/credentials
+</code></pre></div></li>
+<li>As a final check, use the <a href="https://docs.aws.amazon.com/cli/latest/reference/sts/get-caller-identity.html">GetCallerIdentity</a> CLI command to validate that the Cloud9 IDE is using the correct IAM role.
+    <div class="highlight"><pre><span></span><code>aws sts get-caller-identity --query Arn <span class="p">|</span> grep workshop-admin -q <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;IAM role valid&quot;</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&quot;IAM role NOT valid&quot;</span>
+</code></pre></div></li>
+</ol>
+<h4 id="upgrade-awscli">Upgrade awscli<a class="headerlink" href="#upgrade-awscli" title="Permanent link">&para;</a></h4>
+<p>Ensure you are running the latest version of AWS CLI:</p>
+<div class="highlight"><pre><span></span><code>aws --version
+pip install awscli --upgrade --user
+</code></pre></div>
+
+<p>Run <code>aws configure</code> to configure your region. Leave all the other fields blank. You should have something like:</p>
+<div class="highlight"><pre><span></span><code>admin:~/environment $ aws configure
+AWS Access Key ID [None]: 
+AWS Secret Access Key [None]: 
+Default region name [None]: us-east-1
+Default output format [None]: 
+</code></pre></div>
+
+<h4 id="install-terraform">Install Terraform<a class="headerlink" href="#install-terraform" title="Permanent link">&para;</a></h4>
+<p>Download and install Terraform:</p>
+<div class="highlight"><pre><span></span><code>wget https://releases.hashicorp.com/terraform/0.13.4/terraform_0.13.4_linux_amd64.zip
+unzip terraform_0.13.4_linux_amd64.zip
+sudo mv terraform /usr/local/bin/
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/bin/terraform
+</code></pre></div>
+
+<p>Verify that you can run Terraform:</p>
+<div class="highlight"><pre><span></span><code>terraform version
+</code></pre></div>
+
+<!---
+This is no longer required as we get creds from the IAM role
+
+- Set up a profile using your credentials as described in the [AWS CLI Configuration and credential file settings](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html).
+-->
+
+<h4 id="install-workshop-files">Install workshop files<a class="headerlink" href="#install-workshop-files" title="Permanent link">&para;</a></h4>
+<p>You will need to import the workshop files into your Cloud9 environment:</p>
+<div class="highlight"><pre><span></span><code>wget https://github.com/aws-samples/aws-ecs-cicd-terraform/archive/master.zip
+unzip master.zip
+<span class="nb">cd</span> aws-ecs-cicd-terraform-master
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../architecture/" title="Module 1 - Architecture" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Module 1 - Architecture
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../infrastructure/" title="Module 3 - Build the infrastructure" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Module 3 - Build the infrastructure
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.2d1db4bd.min.js"></script>
+      <script src="../assets/javascripts/bundle.6627ddf3.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
