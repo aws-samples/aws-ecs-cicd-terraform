@@ -20,4 +20,4 @@ jobs:
           pip install mkdocs-material 
       - name: Deploy 
         run: | 
-          git pull mkdocs gh-deploy
+          mkdocs gh-deploy
