@@ -117,9 +117,9 @@ This is no longer required as we get creds from the IAM role
 You will need to import the workshop files into your Cloud9 environment:
 
 ```bash
-wget <github-repo-zip-url> -O workshop.zip
-unzip workshop.zip
-cd terraform-ecs-cicd-petclinic-master
+wget https://github.com/aws-samples/aws-ecs-cicd-terraform/archive/master.zip
+unzip master.zip
+cd aws-ecs-cicd-terraform-master
 ```
 
 
