@@ -17,7 +17,7 @@ theme:
      text: 'Roboto'
      code: 'Consolas'
   feature:
-    tabs: true
+    tabs: false
 # Customizations
 markdown_extensions:
   - admonition
