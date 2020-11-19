@@ -1,13 +1,11 @@
 site_name: Build and Deploy Spring Petclinic Application to Amazon ECS using Terraform and AWS CodePipeline
 nav:
-  - 'Introduction': index.md
-  - 'Modules':
-    - 'Module 1 - Architecture': architecture.md
-    - 'Module 2 - Prerequisites': prerequisites.md
-    - 'Module 3 - Build the infrastructure': blog/ipoGCN.md
-    - 'Module 4 - Deploy': infrastructure.md
-    - 'Module 5 - Trigger pipeline': deploy.md
-    - 'Module 6 - Cleanup': cleanup.md 
+  - Module 1 - Architecture: architecture.md
+  - Module 2 - Prerequisites: prerequisites.md
+  - Module 3 - Build the infrastructure: infrastructure.md
+  - Module 4 - Deploy: deploy.md
+  - Module 5 - Trigger pipeline: pipeline.md
+  - Module 6 - Cleanup: cleanup.md
 theme:
   name: 'material'
   palette:
