@@ -9,12 +9,14 @@
       
       
       
-      <link rel="shortcut icon" href="assets/images/favicon.png">
+        <meta name="author" content="irsbuchh@amazon.com">
+      
+      <link rel="shortcut icon" href="assets/images/aws-favicon.ico">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.5">
     
     
       
-        <title>Build and Deploy Spring Petclinic Application to Amazon ECS using Terraform and AWS CodePipeline</title>
+        <title>Build and Deploy Application to Amazon Fargate</title>
       
     
     
@@ -23,10 +25,6 @@
         
         <link rel="stylesheet" href="assets/stylesheets/palette.196e0c26.min.css">
         
-          
-          
-          <meta name="theme-color" content="#4051b5">
-        
       
     
     
@@ -34,11 +32,13 @@
       
         
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CConsolas&display=fallback">
-        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Consolas",SFMono-Regular,Consolas,Menlo,monospace}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
     
     
+    
+      <link rel="stylesheet" href="stylesheets/custom.css">
     
     
       
@@ -52,7 +52,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
       
   
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -74,10 +74,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="." title="Build and Deploy Spring Petclinic Application to Amazon ECS using Terraform and AWS CodePipeline" class="md-header-nav__button md-logo" aria-label="Build and Deploy Spring Petclinic Application to Amazon ECS using Terraform and AWS CodePipeline">
+    <a href="." title="Build and Deploy Application to Amazon Fargate" class="md-header-nav__button md-logo" aria-label="Build and Deploy Application to Amazon Fargate">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <img src="assets/images/aws_smile_logo.png" alt="logo">
 
     </a>
     <label class="md-header-nav__button md-icon" for="__drawer">
@@ -87,7 +86,7 @@
       
         <div class="md-header-nav__ellipsis">
           <span class="md-header-nav__topic md-ellipsis">
-            Build and Deploy Spring Petclinic Application to Amazon ECS using Terraform and AWS CodePipeline
+            Build and Deploy Application to Amazon Fargate
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
@@ -129,6 +128,19 @@
 </div>
     
     
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/aws-samples/aws-ecs-cicd-terraform/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    aws-samples/aws-ecs-cicd-terraform
+  </div>
+</a>
+      </div>
+    
   </nav>
 </header>
     
@@ -148,14 +160,26 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Build and Deploy Spring Petclinic Application to Amazon ECS using Terraform and AWS CodePipeline" class="md-nav__button md-logo" aria-label="Build and Deploy Spring Petclinic Application to Amazon ECS using Terraform and AWS CodePipeline">
+    <a href="." title="Build and Deploy Application to Amazon Fargate" class="md-nav__button md-logo" aria-label="Build and Deploy Application to Amazon Fargate">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <img src="assets/images/aws_smile_logo.png" alt="logo">
 
     </a>
-    Build and Deploy Spring Petclinic Application to Amazon ECS using Terraform and AWS CodePipeline
+    Build and Deploy Application to Amazon Fargate
   </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/aws-samples/aws-ecs-cicd-terraform/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    aws-samples/aws-ecs-cicd-terraform
+  </div>
+</a>
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -231,6 +255,30 @@
   </li>
 
     
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="contribute.md" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="license.md" class="md-nav__link">
+      License
+    </a>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -287,13 +335,17 @@
             <article class="md-content__inner md-typeset">
               
                 
+                  <a href="https://github.com/aws-samples/aws-ecs-cicd-terraform/edit/master/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
                 
-                <h1 id="workshop-build-and-deploy-spring-petclinic-application-to-amazon-ecs-using-terraform-and-aws-codepipeline">Workshop - Build and Deploy Spring Petclinic Application to Amazon ECS using Terraform and AWS CodePipeline<a class="headerlink" href="#workshop-build-and-deploy-spring-petclinic-application-to-amazon-ecs-using-terraform-and-aws-codepipeline" title="Permanent link">&para;</a></h1>
-<h3 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h3>
+                
+                <h1 id="workshop-build-and-deploy-spring-petclinic-application-to-amazon-ecs-using-terraform-and-aws-codepipeline">Workshop - Build and Deploy Spring Petclinic Application to Amazon ECS using Terraform and AWS CodePipeline</h1>
+<h3 id="introduction">Introduction</h3>
 <p>This workshop is designed to enable engineers to get some hands-on experience using AWS CI/CD tools to build pipelines for ECS workloads. The workshop consists of a number of lab modules, each designed to demonstrate a CI/CD pattern. You will be using AWS services like AWS CodePipeline, AWS CodeCommit, AWS CodeBuild, AWS CloudFormation, and AWS CodeDeploy.</p>
-<h3 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h3>
+<h3 id="background">Background</h3>
 <p>The Spring PetClinic sample application is designed to show how the Spring application framework can be used to build simple, but powerful database-oriented applications. It uses AWS RDS (MySQL) at the backend and it will demonstrate the use of Spring's core functionality. The Spring Framework is a collection of small, well-focused, loosely coupled Java frameworks that can be used independently or collectively to build industrial strength applications of many different types.</p>
-<h3 id="contributors">Contributors<a class="headerlink" href="#contributors" title="Permanent link">&para;</a></h3>
+<h3 id="contributors">Contributors</h3>
 <ul>
 <li>Irshad A Buchh, Amazon Web Services</li>
 <li>Mike Rizzo, Amazon Web Services</li>
@@ -316,6 +368,10 @@
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            <a href="https://aws.amazon.com/privacy/" target="_blank">Privacy</a> | <a href="https://aws.amazon.com/terms/" target="_blank">Site terms</a> | &copy; 2020, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+          </div>
         
         Made with
         <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">

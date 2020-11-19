@@ -9,12 +9,14 @@
       
       
       
-      <link rel="shortcut icon" href="../assets/images/favicon.png">
+        <meta name="author" content="irsbuchh@amazon.com">
+      
+      <link rel="shortcut icon" href="../assets/images/aws-favicon.ico">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.5">
     
     
       
-        <title>Module 2 - Prerequisites - Build and Deploy Spring Petclinic Application to Amazon ECS using Terraform and AWS CodePipeline</title>
+        <title>Module 2 - Prerequisites - Build and Deploy Application to Amazon Fargate</title>
       
     
     
@@ -23,10 +25,6 @@
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.196e0c26.min.css">
         
-          
-          
-          <meta name="theme-color" content="#4051b5">
-        
       
     
     
@@ -34,11 +32,13 @@
       
         
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CConsolas&display=fallback">
-        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Consolas",SFMono-Regular,Consolas,Menlo,monospace}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
     
     
+    
+      <link rel="stylesheet" href="../stylesheets/custom.css">
     
     
       
@@ -52,7 +52,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
       
   
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -74,10 +74,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href=".." title="Build and Deploy Spring Petclinic Application to Amazon ECS using Terraform and AWS CodePipeline" class="md-header-nav__button md-logo" aria-label="Build and Deploy Spring Petclinic Application to Amazon ECS using Terraform and AWS CodePipeline">
+    <a href=".." title="Build and Deploy Application to Amazon Fargate" class="md-header-nav__button md-logo" aria-label="Build and Deploy Application to Amazon Fargate">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <img src="../assets/images/aws_smile_logo.png" alt="logo">
 
     </a>
     <label class="md-header-nav__button md-icon" for="__drawer">
@@ -87,7 +86,7 @@
       
         <div class="md-header-nav__ellipsis">
           <span class="md-header-nav__topic md-ellipsis">
-            Build and Deploy Spring Petclinic Application to Amazon ECS using Terraform and AWS CodePipeline
+            Build and Deploy Application to Amazon Fargate
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
@@ -129,6 +128,19 @@
 </div>
     
     
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/aws-samples/aws-ecs-cicd-terraform/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    aws-samples/aws-ecs-cicd-terraform
+  </div>
+</a>
+      </div>
+    
   </nav>
 </header>
     
@@ -148,14 +160,26 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Build and Deploy Spring Petclinic Application to Amazon ECS using Terraform and AWS CodePipeline" class="md-nav__button md-logo" aria-label="Build and Deploy Spring Petclinic Application to Amazon ECS using Terraform and AWS CodePipeline">
+    <a href=".." title="Build and Deploy Application to Amazon Fargate" class="md-nav__button md-logo" aria-label="Build and Deploy Application to Amazon Fargate">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <img src="../assets/images/aws_smile_logo.png" alt="logo">
 
     </a>
-    Build and Deploy Spring Petclinic Application to Amazon ECS using Terraform and AWS CodePipeline
+    Build and Deploy Application to Amazon Fargate
   </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/aws-samples/aws-ecs-cicd-terraform/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    aws-samples/aws-ecs-cicd-terraform
+  </div>
+</a>
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -317,6 +341,30 @@
   </li>
 
     
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../contribute.md" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../license.md" class="md-nav__link">
+      License
+    </a>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -407,19 +455,23 @@
             <article class="md-content__inner md-typeset">
               
                 
+                  <a href="https://github.com/aws-samples/aws-ecs-cicd-terraform/edit/master/docs/prerequisites.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
                 
-                <h1 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h1>
+                
+                <h1 id="prerequisites">Prerequisites</h1>
 <p>Before you build the whole infrastructure, including your CI/CD pipeline, you will need to meet the following pre-requisites.</p>
-<h3 id="aws-account">AWS account<a class="headerlink" href="#aws-account" title="Permanent link">&para;</a></h3>
+<h3 id="aws-account">AWS account</h3>
 <p>Ensure you have access to an AWS account, and a set of credentials with Administrator permissions. Note: In a production environment we would recommend locking permissions down to the bare minimum needed to operate the pipeline.</p>
-<h3 id="create-an-aws-cloud9-environment">Create an AWS Cloud9 environment<a class="headerlink" href="#create-an-aws-cloud9-environment" title="Permanent link">&para;</a></h3>
+<h3 id="create-an-aws-cloud9-environment">Create an AWS Cloud9 environment</h3>
 <details class="info"><summary>What is AWS Cloud9?</summary><p>AWS Cloud9 is a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. It includes a code editor, debugger, and terminal. Cloud9 comes prepackaged with essential tools for popular programming languages, including JavaScript, Python, PHP, and more, so you don’t need to install files or configure your development machine to start new projects. Since your Cloud9 IDE is cloud-based, you can work on your projects from your office, home, or anywhere using an internet-connected machine. Cloud9 also provides a seamless experience for developing serverless applications enabling you to easily define resources, debug, and switch between local and remote execution of serverless applications. With Cloud9, you can quickly share your development environment with your team, enabling you to pair program and track each other's inputs in real time.</p>
 </details>
 <p>Log into the AWS Management Console and search for Cloud9 services in the search bar. Click Cloud9 and create an AWS Cloud9 environment in the us-east-1 region based on Amazon Linux 2.</p>
-<h3 id="configure-the-aws-cloud9-environment">Configure the AWS Cloud9 environment<a class="headerlink" href="#configure-the-aws-cloud9-environment" title="Permanent link">&para;</a></h3>
+<h3 id="configure-the-aws-cloud9-environment">Configure the AWS Cloud9 environment</h3>
 <p>Launch the AWS Cloud9 IDE. Close the Welcome tab and open a new Terminal tab.</p>
 <p><img alt="Cloud9" src="../images/Cloud9.png" /></p>
-<h4 id="create-and-attach-an-iam-role-for-your-cloud9-instance">Create and attach an IAM role for your Cloud9 instance<a class="headerlink" href="#create-and-attach-an-iam-role-for-your-cloud9-instance" title="Permanent link">&para;</a></h4>
+<h4 id="create-and-attach-an-iam-role-for-your-cloud9-instance">Create and attach an IAM role for your Cloud9 instance</h4>
 <p>By default, Cloud9 manages temporary IAM credentials for you.  Unfortunately these are incomaptible with Terraform. To get around this you need to disable Cloud9 temporary credentials, and create and attach an IAM role for your Cloud9 instance.</p>
 <ol>
 <li>Follow <a href="https://console.aws.amazon.com/iam/home#/roles$new?step=review&amp;commonUseCase=EC2%2BEC2&amp;selectedUseCase=EC2&amp;policies=arn:aws:iam::aws:policy%2FAdministratorAccess">this deep link to create an IAM role with Administrator access.</a></li>
@@ -439,43 +491,47 @@
 <li>Close the Preferences tab
 <img alt="c9disableiam" src="../images/c9disableiam.png" /></li>
 <li>In the Cloud9 terminal pane, execute the command:
-    <div class="highlight"><pre><span></span><code>rm -vf <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.aws/credentials
-</code></pre></div></li>
+    <code>bash
+    rm -vf ${HOME}/.aws/credentials</code></li>
 <li>As a final check, use the <a href="https://docs.aws.amazon.com/cli/latest/reference/sts/get-caller-identity.html">GetCallerIdentity</a> CLI command to validate that the Cloud9 IDE is using the correct IAM role.
-    <div class="highlight"><pre><span></span><code>aws sts get-caller-identity --query Arn <span class="p">|</span> grep workshop-admin -q <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;IAM role valid&quot;</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&quot;IAM role NOT valid&quot;</span>
-</code></pre></div></li>
+    <code>bash
+    aws sts get-caller-identity --query Arn | grep workshop-admin -q &amp;&amp; echo "IAM role valid" || echo "IAM role NOT valid"</code></li>
 </ol>
-<h4 id="upgrade-awscli">Upgrade awscli<a class="headerlink" href="#upgrade-awscli" title="Permanent link">&para;</a></h4>
+<h4 id="upgrade-awscli">Upgrade awscli</h4>
 <p>Ensure you are running the latest version of AWS CLI:</p>
-<div class="highlight"><pre><span></span><code>aws --version
+<div class="codehilite"><pre><span></span><code>aws --version
 pip install awscli --upgrade --user
 </code></pre></div>
+
 <p>Run <code>aws configure</code> to configure your region. Leave all the other fields blank. You should have something like:</p>
-<div class="highlight"><pre><span></span><code>admin:~/environment $ aws configure
-AWS Access Key ID [None]: 
-AWS Secret Access Key [None]: 
-Default region name [None]: us-east-1
-Default output format [None]: 
+<div class="codehilite"><pre><span></span><code><span class="k">admin</span><span class="err">:</span><span class="o">~/</span><span class="n">environment</span><span class="w"> </span><span class="err">$</span><span class="w"> </span><span class="n">aws</span><span class="w"> </span><span class="n">configure</span><span class="w"></span>
+<span class="n">AWS</span><span class="w"> </span><span class="n">Access</span><span class="w"> </span><span class="k">Key</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">[</span><span class="n">None</span><span class="o">]</span><span class="err">:</span><span class="w"> </span>
+<span class="n">AWS</span><span class="w"> </span><span class="n">Secret</span><span class="w"> </span><span class="n">Access</span><span class="w"> </span><span class="k">Key</span><span class="w"> </span><span class="o">[</span><span class="n">None</span><span class="o">]</span><span class="err">:</span><span class="w"> </span>
+<span class="k">Default</span><span class="w"> </span><span class="n">region</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">[</span><span class="n">None</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="n">us</span><span class="o">-</span><span class="n">east</span><span class="o">-</span><span class="mi">1</span><span class="w"></span>
+<span class="k">Default</span><span class="w"> </span><span class="k">output</span><span class="w"> </span><span class="nf">format</span><span class="w"> </span><span class="o">[</span><span class="n">None</span><span class="o">]</span><span class="err">:</span><span class="w"> </span>
 </code></pre></div>
-<h4 id="install-terraform">Install Terraform<a class="headerlink" href="#install-terraform" title="Permanent link">&para;</a></h4>
+
+<h4 id="install-terraform">Install Terraform</h4>
 <p>Download and install Terraform:</p>
-<div class="highlight"><pre><span></span><code>wget https://releases.hashicorp.com/terraform/0.13.4/terraform_0.13.4_linux_amd64.zip
+<div class="codehilite"><pre><span></span><code>wget https://releases.hashicorp.com/terraform/0.13.4/terraform_0.13.4_linux_amd64.zip
 unzip terraform_0.13.4_linux_amd64.zip
 sudo mv terraform /usr/local/bin/
 <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/bin/terraform
 </code></pre></div>
+
 <p>Verify that you can run Terraform:</p>
-<div class="highlight"><pre><span></span><code>terraform version
+<div class="codehilite"><pre><span></span><code>terraform version
 </code></pre></div>
+
 <!---
 This is no longer required as we get creds from the IAM role
 
 - Set up a profile using your credentials as described in the [AWS CLI Configuration and credential file settings](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html).
 -->
 
-<h4 id="install-workshop-files">Install workshop files<a class="headerlink" href="#install-workshop-files" title="Permanent link">&para;</a></h4>
+<h4 id="install-workshop-files">Install workshop files</h4>
 <p>You will need to import the workshop files into your Cloud9 environment:</p>
-<div class="highlight"><pre><span></span><code>wget https://github.com/aws-samples/aws-ecs-cicd-terraform/archive/master.zip
+<div class="codehilite"><pre><span></span><code>wget https://github.com/aws-samples/aws-ecs-cicd-terraform/archive/master.zip
 unzip master.zip
 <span class="nb">cd</span> aws-ecs-cicd-terraform-master
 </code></pre></div>
@@ -532,6 +588,10 @@ unzip master.zip
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            <a href="https://aws.amazon.com/privacy/" target="_blank">Privacy</a> | <a href="https://aws.amazon.com/terms/" target="_blank">Site terms</a> | &copy; 2020, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+          </div>
         
         Made with
         <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
