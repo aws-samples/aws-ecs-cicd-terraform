@@ -1,7 +1,8 @@
 # Workshop - Build and Deploy Spring Petclinic Application to Amazon ECS using Terraform and AWS CodePipeline 
 
 ### Introduction
-This workshop is designed to enable engineers to get some hands-on experience using AWS CI/CD tools to build pipelines for ECS workloads. The workshop consists of a number of lab modules, each designed to demonstrate a CI/CD pattern. You will be using AWS services like AWS CodePipeline, AWS CodeCommit, AWS CodeBuild, AWS CloudFormation, and AWS CodeDeploy.
+
+This workshop is designed to enable Solutions Architects and engineers to get some hands-on experience using Terraform with AWS Continuous Ingration and Continuous Devlivery tools and services.  The workshop consists of a sequence of steps to build a pipeline for an Amazon ECS workload using the Java PetClinic sample application. The pipeline itself uses AWS CodePipeline, AWS CodeCommit, AWS CodeBuild, Amazon ECS/Fargate and Amazon ECR.
 
 
 ### Background
