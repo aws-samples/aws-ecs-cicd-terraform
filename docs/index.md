@@ -1,4 +1,4 @@
-# Workshop - Build and Deploy Application to Amazon Fargate 
+# Workshop - Build and Deploy Spring Petclinic Application to Amazon ECS (Fargate) using Terraform and AWS CodePipeline 
 
 ### Introduction
 This workshop is designed to enable engineers to get some hands-on experience using AWS CI/CD tools to build pipelines for ECS workloads. The workshop consists of a number of lab modules, each designed to demonstrate a CI/CD pattern. You will be using AWS services like AWS CodePipeline, AWS CodeCommit, AWS CodeBuild, AWS CloudFormation, and AWS CodeDeploy.
