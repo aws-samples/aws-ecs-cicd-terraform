@@ -1,6 +1,6 @@
 # Project information
 
-site_name: Build and Deploy Application to Amazon Fargate
+site_name: Build and Deploy Spring Petclinic to Amazon ECS using Terraform
 site_short_name: DevOps Pipelines
 site_author: 'irsbuchh@amazon.com'
 
