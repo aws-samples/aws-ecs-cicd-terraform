@@ -1,11 +1,11 @@
 # Prerequisites
 
 Before you build the whole infrastructure, including your CI/CD pipeline, you will need to meet the following pre-requisites.
-AWS account
 
 ### AWS account
 
 Ensure you have access to an AWS account, and a set of credentials with Administrator permissions. Note: In a production environment we would recommend locking permissions down to the bare minimum needed to operate the pipeline.
+
 ### Create an AWS Cloud9 environment
 
 ??? info "What is AWS Cloud9?"
