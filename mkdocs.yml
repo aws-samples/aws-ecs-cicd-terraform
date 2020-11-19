@@ -1,4 +1,26 @@
+# Project information
+
 site_name: Build and Deploy Application to Amazon Fargate
+site_short_name: DevOps Pipelines
+site_author: 'irsbuchh@amazon.com'
+
+# Repository
+repo_name: 'aws-samples/aws-ecs-cicd-terraform'
+repo_url: 'https://github.com/aws-samples/aws-ecs-cicd-terraform'
+
+# Copyright
+copyright: '<a href="https://aws.amazon.com/privacy/" target="_blank">Privacy</a> | <a href="https://aws.amazon.com/terms/" target="_blank">Site terms</a> | &copy; 2020, Amazon Web Services, Inc. or its affiliates. All rights reserved.'
+
+# Configuration
+theme:
+  name: 'material'
+  logo: 'assets/images/aws_smile_logo.png'
+  favicon: 'assets/images/aws-favicon.ico'
+
+# Customization
+extra_css:
+  - 'stylesheets/custom.css'
+
 nav:
   - Module 1 - Architecture: architecture.md
   - Module 2 - Prerequisites: prerequisites.md
@@ -6,36 +28,11 @@ nav:
   - Module 4 - Deploy: deploy.md
   - Module 5 - Trigger pipeline: pipeline.md
   - Module 6 - Cleanup: cleanup.md 
-theme:
-  name: 'material'
-  palette:
-    primary: 'indigo'
-    accent: 'indigo'
-  font:
-     text: 'Roboto'
-     code: 'Consolas'
-  feature:
-    tabs: true
-# Customizations
+  - Contributing: 'contribute.md'
+  - License: 'license.md'
+
+# Extensions
 markdown_extensions:
   - admonition
-  - codehilite   
-  - attr_list
-  - pymdownx.arithmatex
-  - pymdownx.betterem:
-      smart_enable: all
-  - pymdownx.caret
-  - pymdownx.critic
+  - codehilite
   - pymdownx.details
-  - pymdownx.emoji:
-      emoji_generator: !!python/name:pymdownx.emoji.to_svg
-  - pymdownx.inlinehilite
-  - pymdownx.magiclink
-  - pymdownx.mark
-  - pymdownx.smartsymbols
-  - pymdownx.superfences
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.tilde
-  - toc:
-      permalink: true
