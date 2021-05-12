@@ -127,6 +127,8 @@ cd aws-ecs-cicd-terraform-master
 
 We shall use Terraform to build the above architecture including the AWS CodePipeline.
 
+**Note:** This workshop will create chargeable resources in your account. When finished, please make sure you clean up resources as instructed at the end.
+
 ### Set up SSM parameter for DB passwd
 
 ```bash
@@ -290,7 +292,7 @@ As before, you can use the console to observe the progression of the change thro
 
 ## Tearing down the stack
 
-When finished, you can free up resources as follows:
+Make sure that you remember to tear down the stack when finshed to avoid unnecessary charges. You can free up resources as follows:
 
 ```
 cd ../terraform
