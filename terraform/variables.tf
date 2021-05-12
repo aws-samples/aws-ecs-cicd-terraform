@@ -67,7 +67,7 @@ variable "fargate-task-service-role" {
 
 variable "db_instance_type" {
   description = "RDS instance type"
-  default     = "db.r4.2xlarge"
+  default     = "db.m5.large"
 }
 
 variable "db_name" {
