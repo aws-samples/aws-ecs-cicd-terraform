@@ -34,29 +34,7 @@ resource "aws_ecs_task_definition" "task-def" {
                 "awslogs-stream-prefix": "${var.cw_log_stream}"
             }
         },
-    "environment": [
-
-            {
-                "name": "spring.datasource.username",
-                "value": "${var.db_user}"
-            },
-            {
-                "name": "spring.datasource.password",
-                "value": "${data.aws_ssm_parameter.dbpassword.value}"
-            },
-            {
-                "name": "spring.datasource.initialize",
-                "value": "${var.db_initialize}"
-            },
-            {
-                "name": "spring.profiles.active",
-                "value": "${var.db_profile}"
-            },
-            {
-                "name": "spring.datasource.url",
-                "value": "jdbc:mysql://${aws_db_instance.db.address}/${var.db_name}"
-            }
-        ],
+    "environment": [],
     "portMappings": [
       {
         "containerPort": ${var.container_port},

@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: 'cloud-bootstrap-sample-app'
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'info, health'
