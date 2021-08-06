@@ -110,7 +110,6 @@ resource "aws_route_table" "private-route-table" {
   }
 }
 
-
 resource "aws_route_table_association" "route-association" {
   count          = var.az_count
   subnet_id      = element(aws_subnet.private.*.id, count.index)

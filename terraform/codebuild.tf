@@ -5,7 +5,6 @@
 data "aws_caller_identity" "current" {}
 
 # Codebuild role
-
 resource "aws_iam_role" "codebuild_role" {
   assume_role_policy = <<EOF
 {
@@ -76,7 +75,6 @@ resource "aws_iam_role_policy_attachment" "codebuild-attach" {
 
 
 # Codebuild project
-
 resource "aws_codebuild_project" "codebuild" {
   depends_on = [
     aws_codecommit_repository.source_repo,
@@ -125,7 +123,7 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - echo Building the jar
+      - echo Packaging the application...
       - mvn package
       - echo Building the Docker image...
       - docker build -t $REPOSITORY_URI:latest .

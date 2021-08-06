@@ -1,13 +1,10 @@
-
 # ---------------------------------------------------------------------------------------------------------------------
 # ALB
 # ---------------------------------------------------------------------------------------------------------------------
 
 resource "aws_alb" "alb" {
   name            = "${var.stack}-alb"
-  # subnets         = "${aws_subnet.public.*.id}"
   subnets         = aws_subnet.public.*.id
-  # security_groups = ["${aws_security_group.alb-sg.id}"]
   security_groups = [aws_security_group.alb-sg.id]
 }
 

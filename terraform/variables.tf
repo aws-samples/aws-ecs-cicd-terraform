@@ -4,7 +4,6 @@
 
 variable "aws_region" {
   description = "The AWS region to create things in."
-  //default     = "us-east-2"
 }
 
 variable "aws_profile" {
@@ -13,7 +12,7 @@ variable "aws_profile" {
 
 variable "stack" {
   description = "Name of the stack."
-  default     = "GameDay"
+  default     = "CloudBootstrap"
 }
 
 variable "vpc_cidr" {
@@ -30,14 +29,9 @@ variable "aws_ecr" {
   description = "AWS ECR "
 }
 
-# variable "container_image" {
-#  description = "Docker image to run in the ECS cluster"
-#  default     = "ibuchh/spring-petclinic-h2"
-# }
-
 variable "family" {
   description = "Family of the Task Definition"
-  default     = "petclinic"
+  default     = "cloud-bootstrap"
 }
 
 variable "container_port" {
@@ -62,41 +56,11 @@ variable "fargate_memory" {
 
 variable "fargate-task-service-role" {
   description = "Name of the stack."
-  // default     = "GameDay"
-}
-
-variable "db_instance_type" {
-  description = "RDS instance type"
-  default     = "db.m5.large"
-}
-
-variable "db_name" {
-  description = "RDS DB name"
-  default     = "petclinic"
-}
-
-variable "db_user" {
-  description = "RDS DB username"
-  default     = "root"
-}
-
-# variable "db_password" {
-#   description = "RDS DB password"
-# }
-
-variable "db_profile" {
-  description = "RDS Profile"
-  default     = "mysql"
-}
-
-variable "db_initialize" {
-  description = "RDS initialize"
-  default     = "yes"
 }
 
 variable "cw_log_group" {
   description = "CloudWatch Log Group"
-  default     = "GameDay"
+  default     = "CloudBootstrap"
 }
 
 variable "cw_log_stream" {
@@ -105,7 +69,6 @@ variable "cw_log_stream" {
 }
 
 # Source repo name and branch
-
 variable "source_repo_name" {
     description = "Source repo name"
     type = string
@@ -116,9 +79,7 @@ variable "source_repo_branch" {
     type = string
 }
 
-
 # Image repo name for ECR
-
 variable "image_repo_name" {
     description = "Image repo name"
     type = string

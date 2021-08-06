@@ -1,10 +1,9 @@
-
 # ---------------------------------------------------------------------------------------------------------------------
 # ECS TASK ROLE
 # ---------------------------------------------------------------------------------------------------------------------
 
 resource "aws_iam_role" "tasks-service-role" {
-  name               = "${var.fargate-task-service-role}ECSTasksServiceRole" 
+  name               = "${var.fargate-task-service-role}ECSTasksServiceRole"
   path               = "/"
   assume_role_policy = data.aws_iam_policy_document.tasks-service-assume-policy.json
 }

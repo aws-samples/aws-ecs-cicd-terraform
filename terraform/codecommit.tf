@@ -1,18 +1,14 @@
-
 # ---------------------------------------------------------------------------------------------------------------------
 # Code Commit
 # ---------------------------------------------------------------------------------------------------------------------
 
 # Code Commit repo
-
 resource "aws_codecommit_repository" "source_repo" {
   repository_name = var.source_repo_name
   description     = "This is the app source repository"
 }
 
-
 # Trigger role and event rule to trigger pipeline
-
 resource "aws_iam_role" "trigger_role" {
   assume_role_policy = <<EOF
 {
@@ -82,7 +78,6 @@ resource "aws_cloudwatch_event_target" "target_pipeline" {
 }
 
 # Outputs
-
 output "source_repo_clone_url_http" {
   value = aws_codecommit_repository.source_repo.clone_url_http
 }
