@@ -1,4 +1,6 @@
 spring:
+  main:
+    banner-mode: 'off'
   application:
     name: 'cloud-bootstrap-sample-app'
 management:
