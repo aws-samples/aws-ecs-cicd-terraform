@@ -18,6 +18,15 @@ resource "aws_alb_target_group" "trgp" {
   protocol    = "HTTP"
   vpc_id      = aws_vpc.main.id
   target_type = "ip"
+  health_check {
+    path = "/actuator/health"
+    port = 8080
+    healthy_threshold = 3
+    unhealthy_threshold = 2
+    timeout = 3
+    interval = 8
+    matcher = "200"
+  }
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
