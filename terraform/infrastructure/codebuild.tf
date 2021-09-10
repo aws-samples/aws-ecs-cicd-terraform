@@ -21,6 +21,9 @@ resource "aws_iam_role" "codebuild_role" {
 }
 EOF
   path = "/"
+  tags = {
+    Project = var.project
+  }
 }
 
 resource "aws_iam_policy" "codebuild_policy" {
@@ -66,10 +69,13 @@ resource "aws_iam_policy" "codebuild_policy" {
   ]
 }
 EOF
+  tags = {
+    Project = var.project
+  }
 }
 
 resource "aws_iam_role_policy_attachment" "codebuild-attach" {
-  role       = aws_iam_role.codebuild_role.name
+  role = aws_iam_role.codebuild_role.name
   policy_arn = aws_iam_policy.codebuild_policy.arn
 }
 
@@ -80,16 +86,19 @@ resource "aws_codebuild_project" "codebuild" {
     aws_codecommit_repository.source_repo,
     aws_ecr_repository.image_repo
   ]
-  name          = "codebuild-${var.source_repo_name}-${var.source_repo_branch}"
-  service_role  = aws_iam_role.codebuild_role.arn
+  name = "codebuild-${var.source_repo_name}-${var.source_repo_branch}"
+  service_role = aws_iam_role.codebuild_role.arn
+  tags = {
+    Project = var.project
+  }
   artifacts {
     type = "CODEPIPELINE"
   }
   environment {
-    compute_type                = "BUILD_GENERAL1_MEDIUM"
-    image                       = "aws/codebuild/standard:3.0"
-    type                        = "LINUX_CONTAINER"
-    privileged_mode             = true
+    compute_type = "BUILD_GENERAL1_MEDIUM"
+    image = "aws/codebuild/standard:3.0"
+    type = "LINUX_CONTAINER"
+    privileged_mode = true
     image_pull_credentials_type = "CODEBUILD"
     environment_variable {
       name = "REPOSITORY_URI"

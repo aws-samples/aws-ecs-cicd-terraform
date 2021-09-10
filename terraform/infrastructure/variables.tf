@@ -15,6 +15,11 @@ variable "stack" {
   default     = "CloudBootstrap"
 }
 
+variable "project" {
+  description = "Name of the project."
+  default     = "cc-cloud-bootstrap"
+}
+
 variable "vpc_cidr" {
   description = "CIDR for the VPC"
   default     = "172.17.0.0/16"

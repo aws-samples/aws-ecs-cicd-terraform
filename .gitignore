@@ -1,4 +1,6 @@
-terraform/.terraform
-terraform.tfstate
-terraform.tfstate.backup
-.DS_Store
+**/.terraform
+**/terraform.tfstate
+**/terraform.tfstate.backup
+**/.terraform.lock.hcl
+**/.DS_Store
+**/.idea

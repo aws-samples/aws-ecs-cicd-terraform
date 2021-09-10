@@ -5,7 +5,11 @@
 # Code Commit repo
 resource "aws_codecommit_repository" "source_repo" {
   repository_name = var.source_repo_name
-  description     = "This is the app source repository"
+  description = "Application Git Repository"
+  tags = {
+    Name = "${var.stack}-Git-Repo"
+    Project = var.project
+  }
 }
 
 # Trigger role and event rule to trigger pipeline
@@ -25,12 +29,15 @@ resource "aws_iam_role" "trigger_role" {
   ]
 }
 EOF
-  path               = "/"
+  path = "/"
+  tags = {
+    Project = var.project
+  }
 }
 
 resource "aws_iam_policy" "trigger_policy" {
   description = "Policy to allow rule to invoke pipeline"
-  policy      = <<EOF
+  policy = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -44,15 +51,18 @@ resource "aws_iam_policy" "trigger_policy" {
   ]
 }
 EOF
+  tags = {
+    Project = var.project
+  }
 }
 
 resource "aws_iam_role_policy_attachment" "trigger-attach" {
-  role       = aws_iam_role.trigger_role.name
+  role = aws_iam_role.trigger_role.name
   policy_arn = aws_iam_policy.trigger_policy.arn
 }
 
 resource "aws_cloudwatch_event_rule" "trigger_rule" {
-  description   = "Trigger the pipeline on change to repo/branch"
+  description = "Trigger the pipeline on change to repo/branch"
   event_pattern = <<PATTERN
 {
   "source": [ "aws.codecommit" ],
@@ -65,15 +75,18 @@ resource "aws_cloudwatch_event_rule" "trigger_rule" {
   }
 }
 PATTERN
-  role_arn      = aws_iam_role.trigger_role.arn
-  is_enabled    = true
+  role_arn = aws_iam_role.trigger_role.arn
+  is_enabled = true
+  tags = {
+    Project = var.project
+  }
 
 }
 
 resource "aws_cloudwatch_event_target" "target_pipeline" {
-  rule      = aws_cloudwatch_event_rule.trigger_rule.name
-  arn       = aws_codepipeline.pipeline.arn
-  role_arn  = aws_iam_role.trigger_role.arn
+  rule = aws_cloudwatch_event_rule.trigger_rule.name
+  arn = aws_codepipeline.pipeline.arn
+  role_arn = aws_iam_role.trigger_role.arn
   target_id = "${var.source_repo_name}-${var.source_repo_branch}-pipeline"
 }
 

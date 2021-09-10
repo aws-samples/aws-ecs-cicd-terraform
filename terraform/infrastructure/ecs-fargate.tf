@@ -4,6 +4,10 @@
 
 resource "aws_ecs_cluster" "ecs-cluster" {
   name = "${var.stack}-Cluster"
+  tags = {
+    Name = "${var.stack}-Cluster"
+    Project = var.project
+  }
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -17,7 +21,10 @@ resource "aws_ecs_task_definition" "task-def" {
   cpu                      = var.fargate_cpu
   memory                   = var.fargate_memory
   execution_role_arn       = aws_iam_role.tasks-service-role.arn
-
+  tags = {
+    Name = "${var.stack}-ECS-Task-Def"
+    Project = var.project
+  }
   container_definitions = <<DEFINITION
 [
   {
@@ -56,6 +63,10 @@ resource "aws_ecs_service" "service" {
   task_definition = aws_ecs_task_definition.task-def.arn
   desired_count   = var.task_count
   launch_type     = "FARGATE"
+  tags = {
+    Name = "${var.stack}-ECS-Service"
+    Project = var.project
+  }
 
   network_configuration {
     security_groups = [aws_security_group.task-sg.id]
@@ -79,4 +90,7 @@ resource "aws_ecs_service" "service" {
 
 resource "aws_cloudwatch_log_group" "cloud-bootstrap-cw-lgrp" {
   name = var.cw_log_group
+  tags = {
+    Project = var.project
+  }
 }

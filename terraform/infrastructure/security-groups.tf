@@ -23,6 +23,7 @@ resource "aws_security_group" "alb-sg" {
   }
   tags = {
     Name = "${var.stack}-alb-sg"
+    Project = var.project
   }
 }
 
@@ -50,5 +51,6 @@ resource "aws_security_group" "task-sg" {
   }
   tags = {
     Name = "${var.stack}-task-sg"
+    Project = var.project
   }
 }

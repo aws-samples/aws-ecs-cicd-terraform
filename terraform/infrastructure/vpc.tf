@@ -14,6 +14,7 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
   tags = {
     Name = "${var.stack}-VPC"
+    Project = var.project
   }
 }
 
@@ -28,6 +29,7 @@ resource "aws_subnet" "private" {
   vpc_id            = aws_vpc.main.id
   tags = {
     Name = "${var.stack}-PrivateSubnet-${count.index + 1}"
+    Project = var.project
   }
 }
 
@@ -43,6 +45,7 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
   tags = {
     Name = "${var.stack}-PublicSubnet-${count.index + 1}"
+    Project = var.project
   }
 }
 
@@ -54,6 +57,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
   tags = {
     Name = "${var.stack}-IGW"
+    Project = var.project
   }
 }
 
@@ -77,6 +81,7 @@ resource "aws_eip" "eip" {
   depends_on = [aws_internet_gateway.igw]
   tags = {
     Name = "${var.stack}-eip-${count.index + 1}"
+    Project = var.project
   }
 }
 
@@ -90,6 +95,7 @@ resource "aws_nat_gateway" "nat" {
   allocation_id = element(aws_eip.eip.*.id, count.index)
   tags = {
     Name = "${var.stack}-NatGateway-${count.index + 1}"
+    Project = var.project
   }
 }
 
@@ -107,6 +113,7 @@ resource "aws_route_table" "private-route-table" {
   }
   tags = {
     Name = "${var.stack}-PrivateRouteTable-${count.index + 1}"
+    Project = var.project
   }
 }
 

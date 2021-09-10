@@ -19,12 +19,15 @@ resource "aws_iam_role" "codepipeline_role" {
   ]
 }
 EOF
-  path               = "/"
+  path = "/"
+  tags = {
+    Project = var.project
+  }
 }
 
 resource "aws_iam_policy" "codepipeline_policy" {
   description = "Policy to allow codepipeline to execute"
-  policy      = <<EOF
+  policy = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -66,14 +69,20 @@ resource "aws_iam_policy" "codepipeline_policy" {
   ]
 }
 EOF
+  tags = {
+    Project = var.project
+  }
 }
 
 resource "aws_iam_role_policy_attachment" "codepipeline-attach" {
-  role       = aws_iam_role.codepipeline_role.name
+  role = aws_iam_role.codepipeline_role.name
   policy_arn = aws_iam_policy.codepipeline_policy.arn
 }
 
 resource "aws_s3_bucket" "artifact_bucket" {
+  tags = {
+    Project = var.project
+  }
 }
 
 # CodePipeline 
@@ -83,26 +92,31 @@ resource "aws_codepipeline" "pipeline" {
     aws_codebuild_project.codebuild,
     aws_codecommit_repository.source_repo
   ]
-  name     = "${var.source_repo_name}-${var.source_repo_branch}-Pipeline"
+  name = "${var.source_repo_name}-${var.source_repo_branch}-Pipeline"
   role_arn = aws_iam_role.codepipeline_role.arn
   artifact_store {
     location = aws_s3_bucket.artifact_bucket.bucket
-    type     = "S3"
+    type = "S3"
+  }
+  tags = {
+    Name = "${var.stack}-Codepipeline"
+    Project = var.project
   }
 
   stage {
     name = "Source"
     action {
-      name             = "Source"
-      category         = "Source"
-      owner            = "AWS"
-      version          = "1"
-      provider         = "CodeCommit"
-      output_artifacts = ["SourceOutput"]
-      run_order        = 1
+      name = "Source"
+      category = "Source"
+      owner = "AWS"
+      version = "1"
+      provider = "CodeCommit"
+      output_artifacts = [
+        "SourceOutput"]
+      run_order = 1
       configuration = {
-        RepositoryName       = var.source_repo_name
-        BranchName           = var.source_repo_branch
+        RepositoryName = var.source_repo_name
+        BranchName = var.source_repo_branch
         PollForSourceChanges = "false"
       }
     }
@@ -111,14 +125,16 @@ resource "aws_codepipeline" "pipeline" {
   stage {
     name = "Build"
     action {
-      name             = "Build"
-      category         = "Build"
-      owner            = "AWS"
-      version          = "1"
-      provider         = "CodeBuild"
-      input_artifacts  = ["SourceOutput"]
-      output_artifacts = ["BuildOutput"]
-      run_order        = 1
+      name = "Build"
+      category = "Build"
+      owner = "AWS"
+      version = "1"
+      provider = "CodeBuild"
+      input_artifacts = [
+        "SourceOutput"]
+      output_artifacts = [
+        "BuildOutput"]
+      run_order = 1
       configuration = {
         ProjectName = aws_codebuild_project.codebuild.id
       }
@@ -128,17 +144,18 @@ resource "aws_codepipeline" "pipeline" {
   stage {
     name = "Deploy"
     action {
-      name            = "Deploy"
-      category        = "Deploy"
-      owner           = "AWS"
-      version         = "1"
-      provider        = "ECS"
-      run_order       = 1
-      input_artifacts = ["BuildOutput"]
+      name = "Deploy"
+      category = "Deploy"
+      owner = "AWS"
+      version = "1"
+      provider = "ECS"
+      run_order = 1
+      input_artifacts = [
+        "BuildOutput"]
       configuration = {
-        ClusterName       = "${var.stack}-Cluster"
-        ServiceName       = "${var.stack}-Service"
-        FileName          = "imagedefinitions.json"
+        ClusterName = "${var.stack}-Cluster"
+        ServiceName = "${var.stack}-Service"
+        FileName = "imagedefinitions.json"
         DeploymentTimeout = "15"
       }
     }
