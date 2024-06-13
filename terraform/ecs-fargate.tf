@@ -26,8 +26,8 @@ resource "aws_ecs_task_definition" "task-def" {
   requires_compatibilities = ["FARGATE"]
   cpu                      = var.fargate_cpu
   memory                   = var.fargate_memory
-  //task_role_arn            = "${aws_iam_role.ecs-tasks-service-role.arn}"
-  execution_role_arn       = aws_iam_role.tasks-service-role.arn
+  task_role_arn            = aws_iam_role.tasks-service-role.arn
+  execution_role_arn       = aws_iam_role.tasks-execution-role.arn
   # container_definitions = data.template_file.petclinic-container.rendered
   # container_definitions = file("petclinic.json")
 

@@ -70,8 +70,6 @@ resource "aws_cloudwatch_event_rule" "trigger_rule" {
 }
 PATTERN
   role_arn      = aws_iam_role.trigger_role.arn
-  is_enabled    = true
-
 }
 
 resource "aws_cloudwatch_event_target" "target_pipeline" {

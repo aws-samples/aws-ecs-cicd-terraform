@@ -73,7 +73,7 @@ resource "aws_route" "public-route" {
 
 resource "aws_eip" "eip" {
   count      = var.az_count
-  vpc        = true
+  domain     = "vpc"
   depends_on = [aws_internet_gateway.igw]
   tags = {
     Name = "${var.stack}-eip-${count.index + 1}"
