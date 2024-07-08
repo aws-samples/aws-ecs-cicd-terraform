@@ -60,8 +60,13 @@ variable "fargate_memory" {
   default     = "2048"
 }
 
+variable "fargate-task-execution-role" {
+  description = "ECS Task Execution Role"
+  // default     = "GameDay"
+}
+
 variable "fargate-task-service-role" {
-  description = "Name of the stack."
+  description = "ECS Task Service Role."
   // default     = "GameDay"
 }
 

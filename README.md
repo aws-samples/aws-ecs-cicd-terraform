@@ -93,8 +93,8 @@ Default output format [None]:
 Download and install Terraform:
 
 ```bash
-wget https://releases.hashicorp.com/terraform/0.13.4/terraform_0.13.4_linux_amd64.zip
-unzip terraform_0.13.4_linux_amd64.zip
+wget https://releases.hashicorp.com/terraform/1.8.5/terraform_1.8.5_linux_amd64.zip
+unzip terraform_1.8.5_linux_amd64.zip
 sudo mv terraform /usr/local/bin/
 export PATH=$PATH:/usr/local/bin/terraform
 ```
@@ -219,7 +219,7 @@ From the output of the Terraform build, note the Terraform output `source_repo_c
 
 ```bash
 cd ../terraform
-export tf_source_repo_clone_url_http=$(terraform output source_repo_clone_url_http)
+export tf_source_repo_clone_url_http=$(terraform output -raw source_repo_clone_url_http)
 ```
 
 Set this up as a remote for your git repo as follows:
@@ -256,7 +256,7 @@ From the output of the Terraform build, note the Terraform output `alb_address`.
 
 ```bash
 cd ../terraform
-export tf_alb_address=$(terraform output alb_address)
+export tf_alb_address=$(terraform output -raw alb_address)
 echo $tf_alb_address
 ```
 
