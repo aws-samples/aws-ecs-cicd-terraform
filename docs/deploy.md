@@ -18,8 +18,8 @@ cd ../petclinic
 Set up your git username and email address:
 
 ```bash
-git config --global user.name "Your Name"
-git config --global user.email you@example.com
+git config --global user.name "Donkonyo12"
+git config --global user.email superanamele@gmail.com
 ```
 
 Now ceate a local git repo for petclinic as follows:
